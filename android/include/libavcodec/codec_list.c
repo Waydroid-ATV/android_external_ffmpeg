@@ -175,6 +175,8 @@ static const FFCodec * const codec_list[] = {
     &ff_ttml_encoder,
     &ff_webvtt_encoder,
     &ff_xsub_encoder,
+    &ff_h264_vaapi_encoder,
+    &ff_mpeg2_vaapi_encoder,
     &ff_vnull_encoder,
     &ff_anull_encoder,
     &ff_aasc_decoder,

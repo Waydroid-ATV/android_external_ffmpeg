@@ -84,21 +84,6 @@ static const char *const hw_type_names[] = {
     [AV_HWDEVICE_TYPE_VULKAN] = "vulkan",
 };
 
-typedef struct FFHWDeviceContext {
-    /**
-     * The public AVHWDeviceContext. See hwcontext.h for it.
-     */
-    AVHWDeviceContext p;
-
-    const HWContextType *hw_type;
-
-    /**
-     * For a derived device, a reference to the original device
-     * context it was derived from.
-     */
-    AVBufferRef *source_device;
-} FFHWDeviceContext;
-
 enum AVHWDeviceType av_hwdevice_find_type_by_name(const char *name)
 {
     int type;

@@ -90,6 +90,21 @@ typedef struct HWContextType {
                                            AVHWFramesContext *src_ctx, int flags);
 } HWContextType;
 
+typedef struct FFHWDeviceContext {
+    /**
+     * The public AVHWDeviceContext. See hwcontext.h for it.
+     */
+    AVHWDeviceContext p;
+
+    const HWContextType *hw_type;
+
+    /**
+     * For a derived device, a reference to the original device
+     * context it was derived from.
+     */
+    AVBufferRef *source_device;
+} FFHWDeviceContext;
+
 typedef struct FFHWFramesContext {
     /**
      * The public AVHWFramesContext. See hwcontext.h for it.

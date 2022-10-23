@@ -1099,7 +1099,7 @@ static int vaapi_map_from_drm(AVHWFramesContext *src_fc, AVFrame *dst,
     int err, i, j;
 
 #if !VA_CHECK_VERSION(1, 1, 0)
-    unsigned long buffer_handle;
+    uintptr_t buffer_handle;
     VASurfaceAttribExternalBuffers buffer_desc;
     VASurfaceAttrib attrs[2] = {
         {

@@ -22,6 +22,8 @@ LOCAL_SHARED_LIBRARIES +=		\
 	libssl				\
 	libz
 
+LOCAL_SRC_FILES += jpegtables.c
+
 LOCAL_MULTILIB := $(FFMPEG_MULTILIB)
 include $(BUILD_SHARED_LIBRARY)
 
@@ -36,6 +38,8 @@ LOCAL_SHARED_LIBRARIES +=		\
 	libcrypto			\
 	libssl				\
 	libz
+
+LOCAL_SRC_FILES += jpegtables.c
 
 LOCAL_MULTILIB := $(FFMPEG_MULTILIB)
 include $(BUILD_SHARED_LIBRARY)

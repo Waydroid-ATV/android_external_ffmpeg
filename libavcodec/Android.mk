@@ -24,7 +24,7 @@ ifeq ($(CONFIG_VAAPI),yes)
 endif
 
 ifeq ($(CONFIG_LIBDAV1D),yes)
-  LOCAL_SHARED_LIBRARIES += libdav1d
+  LOCAL_STATIC_LIBRARIES += libdav1d
 endif
 
 ifneq ($(ARCH_ARM_HAVE_NEON),)
@@ -48,7 +48,7 @@ ifeq ($(CONFIG_VAAPI),yes)
 endif
 
 ifeq ($(CONFIG_LIBDAV1D),yes)
-  LOCAL_SHARED_LIBRARIES += libdav1d
+  LOCAL_STATIC_LIBRARIES += libdav1d
 endif
 
 ifneq ($(ARCH_ARM_HAVE_NEON),)

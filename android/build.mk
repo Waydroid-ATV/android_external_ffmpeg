@@ -60,6 +60,7 @@ LOCAL_PROPRIETARY_MODULE := true
 
 LOCAL_SRC_FILES := $(C_FILES) $(S_FILES)
 
+LOCAL_HEADER_LIBRARIES := libva_headers
 LOCAL_C_INCLUDES := $(SUBDIR) $(FFMPEG_DIR) \
 					external/dav1d/include
 

@@ -109,7 +109,7 @@
     default rel
 %elifidn __OUTPUT_FORMAT__,win32
     %define PIC 0 ; PIC isn't used on 32-bit Windows
-%elifndef PIC
+%else
     %define PIC 0
 %endif
 

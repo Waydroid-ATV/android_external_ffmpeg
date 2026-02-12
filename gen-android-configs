@@ -2,27 +2,51 @@
 #
 # Generate configurations for various FFMPEG targets
 # TARGETS="armv5te armv7-a armv7-a-neon armv8-a silvermont x86 x86_64"
-TARGETS="x86 x86_64"
+TARGETS="armv7-a armv8-a x86 x86_64"
 # SYSROOT_BASE="../../prebuilts/ndk/current/platforms/android-21"
 # TOOLS_BASE="../../prebuilts/gcc/linux-x86"
 [ -d "$ANDROID_NDK_HOME" ] || { echo "ANDROID_NDK_HOME is not properly set"; exit 1; }
 TOOLS_BASE="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
 
-BASE_CONFIG="--disable-static --enable-shared --enable-optimizations --disable-doc --disable-symver --disable-ffmpeg --disable-ffplay --disable-ffprobe --disable-avdevice --disable-devices --disable-filters --disable-demuxer=srt --disable-demuxer=microdvd --disable-demuxer=jacosub --disable-demuxer=sami --disable-demuxer=realtext --disable-demuxer=dts --disable-demuxer=subviewer --disable-demuxer=subviewer1 --disable-demuxer=pjs --disable-demuxer=vplayer --disable-demuxer=mpl2 --disable-decoder=ass --disable-decoder=srt --disable-decoder=subrip --disable-decoder=microdvd --disable-decoder=jacosub --disable-decoder=sami --disable-decoder=realtext --disable-decoder=movtext --disable-decoder=subviewer --disable-decoder=subviewer1 --disable-decoder=pjs --disable-decoder=vplayer --disable-decoder=mpl2 --disable-v4l2_m2m --enable-filter=scale --enable-filter=yadif --enable-filter=scale_vaapi --enable-filter=deinterlace_vaapi --enable-zlib --enable-pic --disable-debug --nm=${TOOLS_BASE}/llvm-nm --strip=${TOOLS_BASE}/llvm-strip --ar=${TOOLS_BASE}/llvm-ar --ranlib=${TOOLS_BASE}/llvm-ranlib --x86asmexe=${TOOLS_BASE}/yasm"
+BASE_CONFIG=" \
+    --disable-static --enable-shared --enable-optimizations \
+    --disable-doc --disable-symver --disable-ffmpeg --disable-ffplay \
+    --disable-ffprobe --disable-avdevice --disable-devices --disable-filters \
+    --disable-demuxer=srt --disable-demuxer=microdvd --disable-demuxer=jacosub \
+    --disable-demuxer=sami --disable-demuxer=realtext --disable-demuxer=dts \
+    --disable-demuxer=subviewer --disable-demuxer=subviewer1 --disable-demuxer=pjs \
+    --disable-demuxer=vplayer --disable-demuxer=mpl2 --disable-decoder=ass \
+    --disable-decoder=srt --disable-decoder=subrip --disable-decoder=microdvd \
+    --disable-decoder=jacosub --disable-decoder=sami --disable-decoder=realtext \
+    --disable-decoder=movtext --disable-decoder=subviewer --disable-decoder=subviewer1 \
+    --disable-decoder=pjs --disable-decoder=vplayer --disable-decoder=mpl2 --enable-filter=scale \
+    --enable-filter=yadif --enable-filter=scale_vaapi --enable-filter=deinterlace_vaapi \
+    --enable-zlib --enable-pic --disable-debug --nm=${TOOLS_BASE}/llvm-nm \
+    --strip=${TOOLS_BASE}/llvm-strip --ar=${TOOLS_BASE}/llvm-ar \
+    --ranlib=${TOOLS_BASE}/llvm-ranlib --x86asmexe=${TOOLS_BASE}/yasm \
+"
 
-# OPTS_armv5te="--arch=arm --cpu=armv5te --build_suffix= --cross-prefix=${TOOLS_BASE}/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi- --enable-cross-compile --sysroot=${SYSROOT_BASE}/arch-arm --target-os=android"
-# 
-# OPTS_armv7_a="--arch=arm --disable-neon --cpu=armv7-a --build_suffix= --cross-prefix=${TOOLS_BASE}/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi- --enable-cross-compile --sysroot=${SYSROOT_BASE}/arch-arm --target-os=android"
-# 
-# OPTS_armv7_a_neon="--arch=arm --cpu=armv7-a --build_suffix= --cross-prefix=${TOOLS_BASE}/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi- --enable-cross-compile --sysroot=${SYSROOT_BASE}/arch-arm --target-os=android"
-# 
-# OPTS_armv8_a="--arch=aarch64 --enable-cross-compile --cross-prefix=${TOOLS_BASE}/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android- --sysroot=${SYSROOT_BASE}/arch-arm64 --target-os=android"
-# 
-# OPTS_silvermont="--arch=x86 --cpu=silvermont --build_suffix= --cross-prefix=${TOOLS_BASE}/x86/x86_64-linux-android-4.9/bin/x86_64-linux-android- --enable-cross-compile --sysroot=${SYSROOT_BASE}/arch-x86 --target-os=android --extra-cflags=-m32"
+OPTS_armv7_a="--arch=arm --cpu=armv7-a --build_suffix= --cross-prefix=${TOOLS_BASE}/armv7a-linux-androideabi34- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/armv7a-linux-androideabi34-clang --cxx=${TOOLS_BASE}/armv7a-linux-androideabi34-clang++"
+OPTS_armv8_a="--arch=aarch64 --build_suffix= --cross-prefix=${TOOLS_BASE}/aarch64-linux-android34- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/aarch64-linux-android34-clang --cxx=${TOOLS_BASE}/aarch64-linux-android34-clang++"
+OPTS_x86="--arch=x86 --cpu=i686 --build_suffix= --cross-prefix=${TOOLS_BASE}/i686-linux-android34- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/i686-linux-android34-clang --cxx=${TOOLS_BASE}/i686-linux-android34-clang++"
+OPTS_x86_64="--arch=x86_64 --cpu=generic --build_suffix= --cross-prefix=${TOOLS_BASE}/x86_64-linux-android34- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/x86_64-linux-android34-clang --cxx=${TOOLS_BASE}/x86_64-linux-android34-clang++"
 
-OPTS_x86="--arch=x86 --cpu=i686 --build_suffix= --cross-prefix=${TOOLS_BASE}/i686-linux-android31- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/i686-linux-android31-clang --cxx=${TOOLS_BASE}/i686-linux-android31-clang++"
+GENERATED_FILES=" \
+    config_components.h \
+    libavutil/avconfig.h \
+    libavfilter/filter_list.c \
+    libavcodec/codec_list.c \
+    libavcodec/parser_list.c \
+    libavcodec/bsf_list.c \
+    libavformat/demuxer_list.c \
+    libavformat/muxer_list.c \
+    libavformat/protocol_list.c \
+"
 
-OPTS_x86_64="--arch=x86_64 --cpu=generic --build_suffix= --cross-prefix=${TOOLS_BASE}/x86_64-linux-android31- --enable-cross-compile --target-os=android --cc=${TOOLS_BASE}/x86_64-linux-android31-clang --cxx=${TOOLS_BASE}/x86_64-linux-android31-clang++"
+for gen in $GENERATED_FILES; do
+    mkdir -p android/include/`dirname $gen`
+    echo -n > android/include/$gen
+done
 
 for TARGET in $TARGETS;do
     echo "Generating configuration for: ${TARGET}"
@@ -38,23 +62,21 @@ for TARGET in $TARGETS;do
     mv ffbuild/config.mak android/config-${TARGET}.mak
     cat config.h | sed -e "s/^#define \(ARCH_.*\|HAVE_.*\) \(.*\)/#ifdef \1\n#undef \1\n#endif\n#define \1 \2/g" > android/include/config-${TARGET}.h
     rm -f config.asm config.h
+
+    case $TARGET in
+        armv7-a) ARCH_MACRO="ARCH_ARM";;
+        armv8-a) ARCH_MACRO="ARCH_AARCH64";;
+        x86-x86) ARCH_MACRO="ARCH_X86_32";;
+        x86_64-x86_64) ARCH_MACRO="ARCH_X86_64";;
+    esac
+
+    for gen in $GENERATED_FILES; do
+        echo "#if $ARCH_MACRO" >> android/include/$gen
+        cat $gen >> android/include/$gen
+        echo -e '#endif\n' >> android/include/$gen
+    done
 done
 
-GENERATED_FILES=" \
-    config_components.h \
-    libavutil/avconfig.h \
-    libavfilter/filter_list.c \
-    libavcodec/codec_list.c \
-    libavcodec/parser_list.c \
-    libavcodec/bsf_list.c \
-    libavformat/demuxer_list.c \
-    libavformat/muxer_list.c \
-    libavformat/protocol_list.c \
-"
-for gen in $GENERATED_FILES; do
-    mkdir -p android/include/`dirname $gen`
-    mv $gen android/include/$gen
-done
 sed -i -e '1 i\
 #ifdef ANDROID\
 URLProtocol ff_android_protocol;\
@@ -70,6 +92,6 @@ URLProtocol ff_android_protocol;\
 cat > android/include/libavutil/ffversion.h <<EOF
 #ifndef FFVERSION_H
 #define FFVERSION_H
-#define FFMPEG_VERSION "`cat RELEASE` (Android-x86)"
+#define FFMPEG_VERSION "`cat RELEASE` (WayDroid-ATV)"
 #endif /* FFVERSION_H */
 EOF

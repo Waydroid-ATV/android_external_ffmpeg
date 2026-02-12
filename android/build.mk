@@ -88,6 +88,5 @@ LOCAL_LDFLAGS := -Wl,--no-fatal-warnings -Wl,-Bsymbolic
 LOCAL_LDFLAGS_x86 := -Wl,-z,notext
 
 LOCAL_CLANG_CFLAGS += -Wno-unknown-attributes
-LOCAL_CLANG_ASFLAGS += $(if $(filter x86,$(FFMPEG_ARCH_DIR)),,-no-integrated-as)
 
 LOCAL_SHARED_LIBRARIES := $($(NAME)_FFLIBS:%=lib%)

@@ -27,6 +27,7 @@ SUBDIR := $(FFDROID_DIR)/include/
 SRC_PATH := $(FFMPEG_DIR)
 ARCH := $(FFMPEG_ARCH_DIR)
 include $(FFDROID_DIR)/config.mak
+.PHONY: clean
 include $(LOCAL_PATH)/Makefile $(wildcard $(LOCAL_PATH)/$(FFMPEG_ARCH_DIR)/Makefile)
 include $(FFMPEG_DIR)ffbuild/arch.mak
 SRC_PATH :=

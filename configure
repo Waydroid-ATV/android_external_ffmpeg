@@ -7392,6 +7392,7 @@ if enabled x86; then
             hevc_vaapi_hwaccel_deps="vaapi"
             vp9_vaapi_hwaccel_deps="vaapi"
             enable vaapi vaapi_1 vaapi_android
+            enable vulkan
             enable libdrm libdrm_getfb2 linux_dma_buf_h
             enabled x86_32 && disable ebx_available
             enable libdav1d

@@ -8,6 +8,11 @@ ifeq ($(CONFIG_VAAPI),yes)
   LOCAL_SHARED_LIBRARIES += libva
 endif
 
+ifeq ($(CONFIG_VULKAN),yes)
+  LOCAL_HEADER_LIBRARIES += hwvulkan_headers
+  LOCAL_SHARED_LIBRARIES += libvulkan
+endif
+
 LOCAL_MULTILIB := $(FFMPEG_MULTILIB)
 include $(BUILD_SHARED_LIBRARY)
 
@@ -16,6 +21,11 @@ include $(LOCAL_PATH)/../android/build.mk
 
 ifeq ($(CONFIG_VAAPI),yes)
   LOCAL_SHARED_LIBRARIES += libva
+endif
+
+ifeq ($(CONFIG_VULKAN),yes)
+  LOCAL_HEADER_LIBRARIES += hwvulkan_headers
+  LOCAL_SHARED_LIBRARIES += libvulkan
 endif
 
 LOCAL_MULTILIB := $(FFMPEG_MULTILIB)

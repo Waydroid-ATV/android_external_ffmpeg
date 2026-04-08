@@ -23,6 +23,11 @@ ifeq ($(CONFIG_VAAPI),yes)
   LOCAL_SHARED_LIBRARIES += libva
 endif
 
+ifeq ($(CONFIG_VULKAN),yes)
+  LOCAL_HEADER_LIBRARIES += hwvulkan_headers
+  LOCAL_SHARED_LIBRARIES += libvulkan
+endif
+
 ifeq ($(CONFIG_LIBDAV1D),yes)
   LOCAL_STATIC_LIBRARIES += libdav1d
 endif
@@ -45,6 +50,11 @@ LOCAL_SHARED_LIBRARIES +=	\
 
 ifeq ($(CONFIG_VAAPI),yes)
   LOCAL_SHARED_LIBRARIES += libva
+endif
+
+ifeq ($(CONFIG_VULKAN),yes)
+  LOCAL_HEADER_LIBRARIES += hwvulkan_headers
+  LOCAL_SHARED_LIBRARIES += libvulkan
 endif
 
 ifeq ($(CONFIG_LIBDAV1D),yes)

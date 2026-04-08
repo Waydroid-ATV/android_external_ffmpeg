@@ -20,6 +20,11 @@ LOCAL_SHARED_LIBRARIES +=	\
 	libdrm
 endif
 
+ifeq ($(CONFIG_VULKAN),yes)
+  LOCAL_HEADER_LIBRARIES += hwvulkan_headers
+  LOCAL_SHARED_LIBRARIES += libvulkan
+endif
+
 LOCAL_C_INCLUDES += bionic/libc/include
 
 LOCAL_MULTILIB := $(FFMPEG_MULTILIB)
@@ -36,6 +41,11 @@ LOCAL_SHARED_LIBRARIES +=	\
 	libva \
 	libva-android \
 	libdrm
+endif
+
+ifeq ($(CONFIG_VULKAN),yes)
+  LOCAL_HEADER_LIBRARIES += hwvulkan_headers
+  LOCAL_SHARED_LIBRARIES += libvulkan
 endif
 
 LOCAL_C_INCLUDES += bionic/libc/include
